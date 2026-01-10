@@ -29,7 +29,6 @@ execute_after_dh_clean:
 
 override_dh_auto_build:
 	sh debian/check-md5sum-etc profile
-	sh debian/check-md5sum-etc dot.profile
 	set -e; { \
 	  echo "# Triggers for creating multilib aliasing symlinks on demand"; \
 	  for d in $(USR_MERGE_MULTILIB); do \
@@ -72,8 +71,10 @@ override_dh_compress:
 
 override_dh_fixperms:
 	dh_fixperms
+	cd debian/base-files && chown root:staff   var/local
 	cd debian/base-files && chmod 755  `find . -type d`
 	cd debian/base-files && chmod 1777 `cat ../1777-dirs`
+	cd debian/base-files && chmod 2775 `cat ../2775-dirs`
 	cd debian/base-files && chmod 700 root
 
 override_dh_installdeb:

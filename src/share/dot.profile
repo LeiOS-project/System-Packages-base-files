@@ -5,3 +5,7 @@ if [ "$BASH" ]; then
     . ~/.bashrc
   fi
 fi
+
+export PATH="$HOME/.local/bin:$PATH"
+
+mesg n 2> /dev/null || true
