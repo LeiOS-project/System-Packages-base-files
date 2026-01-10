@@ -3,5 +3,13 @@
 /src/debian/files~
 /src/debian/.debhelper
 /src/debian/*.log
-/src/debian/base-files
 /src/debian/leios-base-files
+
+leios-base-files_*.dsc
+leios-base-files_*.tar.xz
+leios-base-files_*.deb
+leios-base-files_*.changes
+leios-base-files_*.buildinfo
+leios-base-files_*.udeb
+leios-base-files_*.tar.gz
+leios-base-files_*.xz
