@@ -2,14 +2,6 @@
 
 include /usr/share/dpkg/architecture.mk
 
-OSNAME = "GNU/`uname | sed -e 's/GNU\///'`"
-ifeq ($(DEB_HOST_GNU_SYSTEM),linux)
-  OSNAME=GNU/Linux
-endif
-ifeq ($(DEB_HOST_GNU_SYSTEM),gnu)
-  OSNAME=GNU/Hurd
-endif
-
 VENDORFILE = debian
 DESTDIR = debian/leios-base-files
 
@@ -49,11 +41,13 @@ override_dh_auto_install:
 ifeq ($(DEB_HOST_GNU_SYSTEM),gnu)
 	rmdir $(DESTDIR)/sys
 endif
-	sed -e "s&#OSNAME#&$(OSNAME)&g" share/motd     > $(DESTDIR)/usr/share/base-files/motd
-	sed -e "s&#OSNAME#&$(OSNAME)&g" share/info.dir > $(DESTDIR)/usr/share/base-files/info.dir
-	sed -e "s&#OSNAME#&$(OSNAME)&g" etc/issue      > $(DESTDIR)/etc/issue
-	sed -e "s&#OSNAME#&$(OSNAME)&g" etc/issue.net  > $(DESTDIR)/etc/issue.net
-	sed -e "s&#OSNAME#&$(OSNAME)&g" etc/os-release > $(DESTDIR)/etc/os-release
+	sed -e "s&{{INSERT_LEIOS_RELEASE}}&$(INSERT_LEIOS_RELEASE)&g" share/motd      > $(DESTDIR)/usr/share/base-files/motd
+	sed -e "s&{{INSERT_LEIOS_RELEASE}}&$(INSERT_LEIOS_RELEASE)&g" share/info.dir  > $(DESTDIR)/usr/share/base-files/info.dir
+	sed -e "s&{{INSERT_LEIOS_RELEASE}}&$(INSERT_LEIOS_RELEASE)&g" etc/issue       > $(DESTDIR)/etc/issue
+	sed -e "s&{{INSERT_LEIOS_RELEASE}}&$(INSERT_LEIOS_RELEASE)&g" etc/issue.net   > $(DESTDIR)/etc/issue.net
+	sed -e "s&{{INSERT_LEIOS_RELEASE}}&$(INSERT_LEIOS_RELEASE)&g" etc/os-release  > $(DESTDIR)/etc/os-release
+	sed -e "s&{{INSERT_LEIOS_RELEASE}}&$(INSERT_LEIOS_RELEASE)&g" etc/lsb-release > $(DESTDIR)/etc/lsb-release
+
 	mv $(DESTDIR)/etc/os-release $(DESTDIR)/usr/lib/os-release
 	ln -s ../usr/lib/os-release $(DESTDIR)/etc/os-release
 
