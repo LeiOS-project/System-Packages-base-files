@@ -1,3 +1,9 @@
+leios-base-files (1.0.0) stable; urgency=medium
+
+  * Update debian_version and os-release for Debian 13.3 point release.
+
+ -- Linus Fischer <leicraft@leicraftmc.de>  Sat, 10 Jan 2026 03:32:35 +0100
+
 base-files (13.8+deb13u3) trixie; urgency=medium
 
   * Update debian_version and os-release for Debian 13.3 point release.
