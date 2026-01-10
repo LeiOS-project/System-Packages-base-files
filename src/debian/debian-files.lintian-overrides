@@ -33,3 +33,11 @@ base-files: relative-symlink usr/sbin [sbin]
 #
 base-files: non-multi-arch-lib-dir [usr/lib64/]
 base-files: non-multi-arch-lib-dir [usr/libx32/]
+#
+# The following directories have become symlinks.
+#
+base-files: file-in-unusual-dir [bin]
+base-files: file-in-unusual-dir [lib64]
+base-files: file-in-unusual-dir [lib]
+base-files: file-in-unusual-dir [libx32]
+base-files: file-in-unusual-dir [sbin]
