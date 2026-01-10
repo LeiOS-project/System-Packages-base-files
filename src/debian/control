@@ -1,25 +1,27 @@
-Source: base-files
+Source: leios-base-files
 Section: admin
 Priority: required
-Maintainer: Santiago Vila <sanvila@debian.org>
+Maintainer: Linus Fischer <leicraft@leicraftmc.de>
 Standards-Version: 4.7.2
 Build-Depends: debhelper-compat (= 13), debhelper (>= 13.10~)
-Vcs-Git: https://salsa.debian.org/sanvila/base-files.git
-Vcs-Browser: https://salsa.debian.org/sanvila/base-files
+Vcs-Git: https://git.leicraftmc.de/LeiOS/System-Packages/base-files.git
+Vcs-Browser: https://git.leicraftmc.de/LeiOS/System-Packages/base-files
 Rules-Requires-Root: no
 
-Package: base-files
-Provides: base, usr-is-merged
+Package: leios-base-files
+Provides: base, usr-is-merged, base-files
 Architecture: any
 Pre-Depends: awk
 Depends: ${misc:Depends}
 Essential: yes
 Priority: required
-Replaces: base, miscutils, dpkg (<= 1.15.0)
+Conflicts: base-files
+Replaces: base, miscutils, dpkg (<= 1.15.0), base-files
 Breaks: debian-security-support (<< 2019.04.25), initscripts (<< 2.88dsf-13.3), sendfile (<< 2.1b.20080616-5.2~)
 Multi-Arch: foreign
-Description: Debian base system miscellaneous files
- This package contains the basic filesystem hierarchy of a Debian system, and
+Description: LeiOS and Debian base system miscellaneous files
+ This package contains the basic filesystem hierarchy of a LeiOS system, and
  several important miscellaneous files, such as /etc/debian_version,
  /etc/host.conf, /etc/issue, /etc/motd, /etc/profile, and others,
- and the text of several common licenses in use on Debian systems.
+ and the text of several common licenses in use on LeiOS systems.
+ Based on https://salsa.debian.org/sanvila/base-files
