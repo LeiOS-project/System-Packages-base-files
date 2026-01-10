@@ -12,7 +12,7 @@ Package: leios-base-files
 Provides: base, usr-is-merged, base-files
 Architecture: any
 Pre-Depends: awk
-Depends: ${misc:Depends}, leios-branding-base-files
+Depends: ${misc:Depends}, leios-branding-meta-files
 Essential: yes
 Priority: required
 Conflicts: base-files
