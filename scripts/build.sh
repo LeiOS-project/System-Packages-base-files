@@ -13,13 +13,20 @@ cd ./src
 # Save current changelog
 cp debian/changelog debian/changelog.backup
 
+
 # Create a temporary changelog with the version you want
-echo "leios-base-files ($1) unstable; urgency=medium
+cat > debian/changelog <<EOF
+leios-base-files ($1) unstable; urgency=medium
 
   * Build for version $1
 
  -- Linus Fischer <leicraft@leicraftmc.de>  $(date -R)
-" > debian/changelog
+
+EOF
+
+# Append the original changelog after the new entry
+cat debian/changelog.backup >> debian/changelog
+
 
 # Build
 INSERT_LEIOS_RELEASE=$(echo $1) dpkg-buildpackage -us -uc
