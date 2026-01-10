@@ -1,0 +1,7 @@
+/src/locale-check
+/src/debian/tmp
+/src/debian/files~
+/src/debian/.debhelper
+/src/debian/*.log
+/src/debian/base-files
+/src/debian/leios-base-files
