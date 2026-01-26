@@ -1,9 +1,9 @@
-/src/locale-check
-/src/debian/tmp
-/src/debian/files
-/src/debian/.debhelper
-/src/debian/*.log
-/src/debian/leios-base-files
+/locale-check
+/debian/tmp
+/debian/files
+/debian/.debhelper
+/debian/*.log
+/debian/leios-base-files
 
 leios-base-files_*.dsc
 leios-base-files_*.tar.xz

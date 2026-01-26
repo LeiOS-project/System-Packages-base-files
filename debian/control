@@ -10,7 +10,7 @@ Rules-Requires-Root: no
 
 Package: leios-base-files
 Provides: base, usr-is-merged, base-files
-Architecture: any
+Architecture: all
 Pre-Depends: awk
 Depends: ${misc:Depends}, leios-branding-meta-files
 Essential: yes

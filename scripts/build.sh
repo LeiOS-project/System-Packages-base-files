@@ -8,15 +8,13 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
-cd ./src
-
 # Save current changelog
 cp debian/changelog debian/changelog.backup
 
 
 # Create a temporary changelog with the version you want
 cat > debian/changelog <<EOF
-leios-base-files ($1) unstable; urgency=medium
+leios-base-files ($1) stable; urgency=medium
 
   * Build for version $1
 
@@ -34,4 +32,3 @@ INSERT_LEIOS_RELEASE=$(echo $1) dpkg-buildpackage -us -uc
 # Restore original
 mv debian/changelog.backup debian/changelog
 
-cd ..
