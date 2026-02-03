@@ -32,3 +32,5 @@ INSERT_LEIOS_RELEASE=$(echo $1) dpkg-buildpackage -us -uc
 # Restore original
 mv debian/changelog.backup debian/changelog
 
+mkdir -p ./build/
+mv ../leios-base-files_* ./build/

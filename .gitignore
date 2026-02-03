@@ -5,6 +5,7 @@
 /debian/*.log
 /debian/leios-base-files
 
+build/
 leios-base-files_*.dsc
 leios-base-files_*.tar.xz
 leios-base-files_*.deb
