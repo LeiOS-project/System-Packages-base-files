@@ -1,0 +1,12 @@
+#!/bin/sh
+
+[ -r /etc/lsb-release ] && . /etc/lsb-release
+
+if [ -z "$DISTRIB_RELEASE" ] && [ -x /usr/bin/lsb_release ]; then
+	# Fall back to using the very slow lsb_release utility
+	DISTRIB_RELEASE=$(lsb_release -sr)
+fi
+
+URL="https://www.leios.dev/"
+
+printf "\n * Website:  %s\n" "$URL"

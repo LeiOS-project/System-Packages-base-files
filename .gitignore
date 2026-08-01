@@ -9,11 +9,11 @@
 /debian/*.log
 /debian/*.substvars
 
-/debian/leios.*
+/debian/leios.system.base-files
 
 /deb-build
 /public
 
 leios.system.base-files_*.dsc
 leios.system.base-files_*.tar.xz
-leios.system.base-files_*.tar.gzbase-files
+leios.system.base-files_*.tar.gz

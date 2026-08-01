@@ -1,11 +1,13 @@
 #!/bin/sh
 set -e
 
-if [ "$1" = "remove" ]; then
-  for d in #USR_MERGE_MULTILIB#; do
-    # Remove DEP17 M4 protective diversions
-    dpkg-divert --quiet --package base-files --remove --no-rename --divert "/.$d.usr-is-merged" "/$d"
-  done
+PACKAGE="leios.system.base-files"
+
+if [ "$1" = "remove" ] || [ "$1" = "purge" ]; then
+    for f in /etc/os-release /etc/lsb-release /etc/issue /etc/issue.net /etc/legal /etc/motd; do
+        dpkg-divert --package "$PACKAGE" --remove --rename \
+            --divert "${f}.base-files" "$f" || true
+    done
 fi
 
 #DEBHELPER#

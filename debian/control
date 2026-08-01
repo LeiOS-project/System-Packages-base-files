@@ -2,26 +2,20 @@ Source: leios.system.base-files
 Section: admin
 Priority: required
 Maintainer: LeiOS Project Team <support@leios.dev>
+Build-Depends: debhelper-compat (= 13)
 Standards-Version: 4.7.2
-Build-Depends: debhelper-compat (= 13), debhelper (>= 13.10~)
-Vcs-Git: https://git.leicraftmc.de/LeiOS/System-Packages/base-files.git
-Vcs-Browser: https://git.leicraftmc.de/LeiOS/System-Packages/base-files
+Homepage: https://git.leicraftmc.de/LeiOS/System-Packages/Base-Files
+Vcs-Git: https://git.leicraftmc.de/LeiOS/System-Packages/Base-Files.git
+Vcs-Browser: https://git.leicraftmc.de/LeiOS/System-Packages/Base-Files
 Rules-Requires-Root: no
 
 Package: leios.system.base-files
-Provides: base, usr-is-merged, base-files
 Architecture: all
-Pre-Depends: awk
-Depends: ${misc:Depends}, leios.system.branding-meta-files
+Depends: ${misc:Depends}, base-files, leios.system.branding-meta-files
 Essential: yes
 Priority: required
-Conflicts: base-files
-Replaces: base, miscutils, dpkg (<= 1.15.0), base-files
-Breaks: debian-security-support (<< 2019.04.25), initscripts (<< 2.88dsf-13.3), sendfile (<< 2.1b.20080616-5.2~)
 Multi-Arch: foreign
-Description: LeiOS and Debian base system miscellaneous files
- This package contains the basic filesystem hierarchy of a LeiOS system, and
- several important miscellaneous files, such as /etc/debian_version,
- /etc/host.conf, /etc/issue, /etc/motd, /etc/profile, and others,
- and the text of several common licenses in use on LeiOS systems.
- Based on https://salsa.debian.org/sanvila/base-files
+Description: LeiOS base system branding files
+ This package applies LeiOS-specific branding to the Debian base-files package.
+ It dynamically generates /etc/os-release, /etc/lsb-release, /etc/issue and
+ /etc/issue.net based on the version supplied by leios.system.branding-meta-files.
