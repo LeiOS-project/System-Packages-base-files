@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-#    10-help-text - print the help text associated with the distro
+#    11-help-text - print the help text associated with the distro
 #    Copyright (C) 2009-2010 Canonical Ltd.
 #
 #    Authors: Dustin Kirkland <kirkland@canonical.com>,

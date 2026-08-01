@@ -1,18 +1,18 @@
-Source: leios-base-files
+Source: leios.system.base-files
 Section: admin
 Priority: required
-Maintainer: Linus Fischer <leicraft@leicraftmc.de>
+Maintainer: LeiOS Project Team <support@leios.dev>
 Standards-Version: 4.7.2
 Build-Depends: debhelper-compat (= 13), debhelper (>= 13.10~)
 Vcs-Git: https://git.leicraftmc.de/LeiOS/System-Packages/base-files.git
 Vcs-Browser: https://git.leicraftmc.de/LeiOS/System-Packages/base-files
 Rules-Requires-Root: no
 
-Package: leios-base-files
+Package: leios.system.base-files
 Provides: base, usr-is-merged, base-files
 Architecture: all
 Pre-Depends: awk
-Depends: ${misc:Depends}, leios-branding-meta-files
+Depends: ${misc:Depends}, leios.system.branding-meta-files
 Essential: yes
 Priority: required
 Conflicts: base-files

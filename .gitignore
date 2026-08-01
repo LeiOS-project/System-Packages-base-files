@@ -1,16 +1,19 @@
 /locale-check
 /debian/tmp
 /debian/files
+# /debian/changelog
+/debian/debhelper-build-stamp
 /debian/.debhelper
+/debian/*.build
+/debian/*.changes
 /debian/*.log
-/debian/leios-base-files
+/debian/*.substvars
 
-build/
-leios-base-files_*.dsc
-leios-base-files_*.tar.xz
-leios-base-files_*.deb
-leios-base-files_*.changes
-leios-base-files_*.buildinfo
-leios-base-files_*.udeb
-leios-base-files_*.tar.gz
-leios-base-files_*.xz
+/debian/leios.*
+
+/deb-build
+/public
+
+leios.system.base-files_*.dsc
+leios.system.base-files_*.tar.xz
+leios.system.base-files_*.tar.gzbase-files
