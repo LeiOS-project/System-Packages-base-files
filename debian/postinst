@@ -1,15 +1,17 @@
 #!/bin/sh
-set -eu pipefail
+set -eu
+
+ROOT="${DPKG_ROOT:-}"
 
 if [ "$1" = "configure" ] || [ "$1" = "triggered" ]; then
     # Prefer LeiOS as the default dpkg vendor.
-    if [ ! -e "$DPKG_ROOT/etc/dpkg/origins/default" ] || \
-       [ "$(readlink -f "$DPKG_ROOT/etc/dpkg/origins/default" 2>/dev/null)" != "$DPKG_ROOT/etc/dpkg/origins/leios" ]; then
-        ln -sf leios "$DPKG_ROOT/etc/dpkg/origins/default"
+    if [ ! -e "${ROOT}/etc/dpkg/origins/default" ] || \
+       [ "$(readlink -f "${ROOT}/etc/dpkg/origins/default" 2>/dev/null)" != "${ROOT}/etc/dpkg/origins/leios" ]; then
+        ln -sf leios "${ROOT}/etc/dpkg/origins/default"
     fi
 
-    if [ -x "$DPKG_ROOT/usr/share/leios/system/utils/base-files/install.sh" ]; then
-        "$DPKG_ROOT/usr/share/leios/system/utils/base-files/install.sh"
+    if [ -x "${ROOT}/usr/share/leios/system/utils/base-files/install.sh" ]; then
+        "${ROOT}/usr/share/leios/system/utils/base-files/install.sh"
     fi
 fi
 

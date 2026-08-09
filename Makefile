@@ -9,6 +9,9 @@ DEB_BUILD_OUTPUT_DIR := deb-build
 
 all: package
 
+# Guard macro: abort if a variable is empty.
+require_var = $(if $(strip $1),,$(error Required variable is empty: $2))
+
 # Safe cleanup used by debhelper: only removes generated files that are not
 # the final build output directory. That directory is kept because this target
 # is called by dh_auto_clean while the package is still being built.

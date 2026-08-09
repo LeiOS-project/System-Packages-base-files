@@ -7,16 +7,17 @@ branding using `dpkg-divert`.
 ## What this package does
 
 - Diverts a small set of files installed by Debian `base-files`:
-  - `/etc/os-release`
+  - `/usr/lib/os-release`
   - `/etc/lsb-release`
   - `/etc/issue`
   - `/etc/issue.net`
   - `/etc/legal`
+  - `/etc/motd`
 - Installs the LeiOS versions of these files.
 - Ships raw branding templates under:
 
   ```
-  /usr/share/leios/system/utils/base-files/raw-files/
+  /usr/share/leios/system/utils/base-files/dynamic-raw-files/
   ```
 
   and an installer script at:
@@ -26,11 +27,11 @@ branding using `dpkg-divert`.
   ```
 
 - During configuration, `install.sh` is executed. It reads the current LeiOS
-  version from `/etc/leios/system/version` (supplied by
-  `leios.system.branding-meta-files`), replaces `{{INSERT_LEIOS_VERSION}}` in
-  the templates, and writes the final files to `/usr/lib/os-release`
-  (with `/etc/os-release` as a relative symlink), `/etc/lsb-release`,
-  `/etc/issue`, and `/etc/issue.net`.
+  metadata from `/usr/share/leios/system/utils/branding-meta-files/`
+  (supplied by `leios.system.branding-meta-files`), replaces the
+  `{{INSERT_LEIOS_*}}` placeholders in the templates, and writes the final
+  files to `/usr/lib/os-release` (with `/etc/os-release` as a relative
+  symlink), `/etc/lsb-release`, `/etc/issue`, and `/etc/issue.net`.
 
 ## Why this design?
 
@@ -40,21 +41,21 @@ frequently. With this split:
 - `leios.system.base-files` only needs to be rebuilt when branding logic or
   file contents change.
 - `leios.system.branding-meta-files` is rebuilt for each rolling release and
-  simply provides the new `/etc/leios/system/version`.
+  simply provides the new metadata.
 - Debian's upstream `base-files` can be updated independently, without
   requiring any manual merge into this repository.
 
 ## Building
 
 ```bash
-./scripts/build.sh <version>
+make package
 ```
 
 For example:
 
 ```bash
-./scripts/build.sh 2026.08.001
+make package
 ```
 
-The build argument is mainly used for the Debian changelog; the actual branding
-version is read from `leios.system.branding-meta-files` at install time.
+This produces the `.deb` package in `deb-build/`. The actual branding version
+is read from `leios.system.branding-meta-files` at install time.
