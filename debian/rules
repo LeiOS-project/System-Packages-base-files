@@ -6,6 +6,14 @@ DYNAMIC_RAW_FILES_DIR = /usr/share/leios/system/utils/base-files/dynamic-raw-fil
 %:
 	dh $@
 
+# Use only the safe 'clean' target during debhelper's clean phase.
+# 'distclean' would also remove the build output directory that we need
+# to keep while the package is being assembled.
+override_dh_auto_clean:
+	$(MAKE) clean
+
+override_dh_auto_test:
+
 override_dh_auto_install:
 	# Branding installer script used by both this package and leios.system.branding-meta-files.
 	install -D -p -m 755 src/install.sh \
@@ -23,3 +31,5 @@ override_dh_auto_install:
 
 	# LeiOS static dpkg origin files
 	install -D -p -m 644 src/static/origins/leios    $(DESTDIR)/etc/dpkg/origins/leios
+
+override_dh_auto_build:

@@ -2,7 +2,7 @@ Source: leios.system.base-files
 Section: admin
 Priority: required
 Maintainer: LeiOS Project Team <support@leios.dev>
-Build-Depends: debhelper-compat (>= 13)
+Build-Depends: debhelper-compat (= 13)
 Standards-Version: 4.7.2
 Homepage: https://git.leicraftmc.de/LeiOS/System-Packages/Base-Files
 Vcs-Git: https://git.leicraftmc.de/LeiOS/System-Packages/Base-Files.git
