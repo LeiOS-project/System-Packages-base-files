@@ -27,7 +27,7 @@ branding using `dpkg-divert`.
 
 - During configuration, `install.sh` is executed. It reads the current LeiOS
   version from `/etc/leios/system/version` (supplied by
-  `leios.system.branding-meta-files`), replaces `{{INSERT_LEIOS_RELEASE}}` in
+  `leios.system.branding-meta-files`), replaces `{{INSERT_LEIOS_VERSION}}` in
   the templates, and writes the final files to `/usr/lib/os-release`
   (with `/etc/os-release` as a relative symlink), `/etc/lsb-release`,
   `/etc/issue`, and `/etc/issue.net`.

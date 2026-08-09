@@ -1,17 +1,11 @@
 #!/bin/sh
-set -e
+set -eu pipefail
 
 PACKAGE="leios.system.base-files"
 
 if [ "$1" = "install" ] || [ "$1" = "upgrade" ]; then
-    # /etc/os-release is a symlink on merged-/usr systems. Remove it before
-    # diverting so dpkg-divert diverts the real file path and our package can
-    # install a fresh symlink afterwards.
-    if [ -L "$DPKG_ROOT/etc/os-release" ]; then
-        rm -f "$DPKG_ROOT/etc/os-release"
-    fi
 
-    for f in /etc/os-release /etc/lsb-release /etc/issue /etc/issue.net /etc/legal /etc/motd; do
+    for f in /usr/lib/os-release /etc/lsb-release /etc/issue /etc/issue.net /etc/legal /etc/motd; do
         dpkg-divert --package "$PACKAGE" --add --rename \
             --divert "${f}.base-files" "$f" || true
     done

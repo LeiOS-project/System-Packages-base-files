@@ -1,10 +1,11 @@
 #!/bin/sh
-set -e
+set -eu pipefail
 
 PACKAGE="leios.system.base-files"
 
 if [ "$1" = "remove" ] || [ "$1" = "purge" ]; then
-    for f in /etc/os-release /etc/lsb-release /etc/issue /etc/issue.net /etc/legal /etc/motd; do
+
+    for f in /usr/lib/os-release /etc/lsb-release /etc/issue /etc/issue.net /etc/legal /etc/motd; do
         dpkg-divert --package "$PACKAGE" --remove --rename \
             --divert "${f}.base-files" "$f" || true
     done

@@ -1,6 +1,7 @@
 #!/usr/bin/make -f
 
 DESTDIR = debian/leios.system.base-files
+DYNAMIC_RAW_FILES_DIR = /usr/share/leios/system/utils/base-files/dynamic-raw-files
 
 %:
 	dh $@
@@ -11,15 +12,14 @@ override_dh_auto_install:
 	  $(DESTDIR)/usr/share/leios/system/utils/base-files/install.sh
 
 	# Raw branding templates used by the LeiOS branding installer.
-	install -D -p -m 644 src/etc/os-release  $(DESTDIR)/usr/share/leios/system/utils/base-files/raw-files/os-release
-	install -D -p -m 644 src/etc/lsb-release $(DESTDIR)/usr/share/leios/system/utils/base-files/raw-files/lsb-release
-	install -D -p -m 644 src/etc/issue       $(DESTDIR)/usr/share/leios/system/utils/base-files/raw-files/issue
-	install -D -p -m 644 src/etc/issue.net   $(DESTDIR)/usr/share/leios/system/utils/base-files/raw-files/issue.net
+	install -D -p -m 644 src/dynamic/etc/os-release  $(DESTDIR)$(DYNAMIC_RAW_FILES_DIR)/os-release
+	install -D -p -m 644 src/dynamic/etc/lsb-release $(DESTDIR)$(DYNAMIC_RAW_FILES_DIR)/lsb-release
+	install -D -p -m 644 src/dynamic/etc/issue       $(DESTDIR)$(DYNAMIC_RAW_FILES_DIR)/issue
+	install -D -p -m 644 src/dynamic/etc/issue.net   $(DESTDIR)$(DYNAMIC_RAW_FILES_DIR)/issue.net
 
-	# LeiOS static branding files (diverted from base-files).
-	install -D -p -m 644 src/etc/legal       $(DESTDIR)/etc/legal
-	install -D -p -m 644 src/etc/motd        $(DESTDIR)/etc/motd
+	# LeiOS static base-files files
+	install -D -p -m 644 src/static/etc/legal       $(DESTDIR)/etc/legal
+	install -D -p -m 644 src/static/etc/motd        $(DESTDIR)/etc/motd
 
-	# LeiOS dpkg origin and MOTD helper.
-	install -D -p -m 644 src/origins/leios    $(DESTDIR)/etc/dpkg/origins/leios
-	install -D -p -m 755 src/motd/11-help-text $(DESTDIR)/etc/update-motd.d/11-help-text
+	# LeiOS static dpkg origin files
+	install -D -p -m 644 src/static/origins/leios    $(DESTDIR)/etc/dpkg/origins/leios
