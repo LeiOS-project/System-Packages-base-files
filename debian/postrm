@@ -6,6 +6,11 @@ ROOT="${DPKG_ROOT:-}"
 
 if [ "$1" = "remove" ] || [ "$1" = "purge" ]; then
 
+    # Remove the diversions. Keep --rename here so that on systems that had
+    # the originals moved aside to *.base-files (the old rule), the original
+    # essential-package files are restored into place. On systems diverged
+    # with --no-rename there is no *.base-files copy, so --rename is a no-op
+    # and only the diversion record is removed.
     for f in /usr/lib/os-release /etc/lsb-release /etc/issue /etc/issue.net /etc/legal /etc/motd; do
         dpkg-divert --root "${ROOT:-/}" --package "$PACKAGE" --remove --rename \
             --divert "${f}.base-files" "$f" || true

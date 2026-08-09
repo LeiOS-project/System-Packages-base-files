@@ -6,8 +6,15 @@ ROOT="${DPKG_ROOT:-}"
 
 if [ "$1" = "install" ] || [ "$1" = "upgrade" ]; then
 
+    # Register diversions for the files this package overrides. Use
+    # --no-rename so we never move a file owned by an essential package
+    # (e.g. base-files' /usr/lib/os-release, /etc/issue, /etc/issue.net),
+    # which dpkg-divert flags as dangerous under --rename. Our own versions
+    # are written on top of the originals by the postinst installer script.
+    # --add is idempotent: on systems already diverged with the old --rename
+    # rule this is a no-op, so existing setups are not disturbed.
     for f in /usr/lib/os-release /etc/lsb-release /etc/issue /etc/issue.net /etc/legal /etc/motd; do
-        dpkg-divert --root "${ROOT:-/}" --package "$PACKAGE" --add --rename \
+        dpkg-divert --root "${ROOT:-/}" --package "$PACKAGE" --add --no-rename \
             --divert "${f}.base-files" "$f" || true
     done
 fi
